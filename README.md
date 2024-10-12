@@ -71,3 +71,17 @@ You will see in the `lib` folder, there is a file called `iframe.ts`. This sets 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). Before starting your work, make sure you update to the latest version of NextJS.
 
+---
+
+## New Features
+
+- Multi-step onboarding form with data persistence
+- Optimistic UI updates for improved user experience
+- Analytics integration for tracking user progress
+- Internationalization support for multiple languages
+
+## Development
+
+### Testing
+
+Run tests with:

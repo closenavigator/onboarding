@@ -1,0 +1,8 @@
+{
+  "personalInfo.name": "Name",
+  "personalInfo.email": "Email",
+  "professionalInfo.role": "Role",
+  "professionalInfo.experience": "Years of Experience",
+  "preferences.interests": "Interests",
+  "preferences.newsletter": "Subscribe to newsletter"
+}
