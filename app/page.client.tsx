@@ -1,7 +1,7 @@
 "use client";
 
-import type { themeAccentColorsOrdered } from "frosted-ui";
-import { Button, useThemeContext } from "frosted-ui";
+import type { themeAccentColorsOrdered } from "@whop/frosted-ui";
+import { Button, useThemeContext } from "@whop/frosted-ui";
 import { useCallback } from "react";
 
 export function ThemeSwitcherButton({
