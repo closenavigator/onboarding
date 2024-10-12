@@ -12,22 +12,22 @@
   },
   "dependencies": {
     "@whop-apps/sdk": "latest",
-    "@whop/frosted-ui": "latest",
+    "@whop/frosted-ui": "^0.0.1-canary.24",
+    "framer-motion": "^10.12.16",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "framer-motion": "^10.12.16",
     "react-hook-form": "^7.45.1",
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@hookform/resolvers": "^3.1.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "typescript": "^5",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/jest-dom": "^5.16.5",
     "jest": "^29.0.0",
-    "@hookform/resolvers": "^3.1.1"
+    "typescript": "^5"
   }
 }
