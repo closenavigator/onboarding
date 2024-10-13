@@ -1,16 +1,12 @@
-import { frostedThemePlugin } from "frosted-ui";
 import type { Config } from "tailwindcss";
+import preset from "@whop/frosted-ui/dist/preset";
 
-const config: Config = {
-  darkMode: ["class"],
+const config = preset({
   content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {
-    extend: {},
-  },
-  plugins: [frostedThemePlugin({})],
-};
+});
+
 export default config;

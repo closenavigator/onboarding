@@ -1,5 +1,3 @@
-'use client'
-
 import { headers } from "next/headers";
 import { validateToken, hasAccess, WhopAPI } from "@whop-apps/sdk";
 import ClientSideForm from './ClientSideForm';

@@ -5,13 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Button, Card, Input, Label, TextArea, RadioGroup, Checkbox } from "@whop/frosted-ui"
-import ReactGA from 'react-ga'
 import dynamic from 'next/dynamic'
-import { useIntl } from 'react-intl'
 
-// Initialize GA
-ReactGA.initialize('YOUR-GA-TRACKING-ID');
+// Initialize GA (comment out if not using)
+// ReactGA.initialize('YOUR-GA-TRACKING-ID');
 
 // Define the schema for each step
 const personalInfoSchema = z.object({
@@ -55,14 +52,17 @@ export default function MultiStepForm({ onSubmit, initialData = {} }: MultiStepF
   })
 
   useEffect(() => {
-    // Load partial form data from local storage
     const savedData = localStorage.getItem('onboardingFormData')
     if (savedData) {
-      const parsedData = JSON.parse(savedData)
-      setFormData(parsedData)
-      Object.entries(parsedData).forEach(([key, value]) => {
-        setValue(key as any, value)
-      })
+      try {
+        const parsedData = JSON.parse(savedData) as Partial<FormData>
+        setFormData(parsedData)
+        Object.entries(parsedData).forEach(([key, value]) => {
+          setValue(key as keyof FormData, value as any)
+        })
+      } catch (error) {
+        console.error('Error parsing saved form data:', error)
+      }
     }
   }, [setValue])
 
@@ -105,11 +105,11 @@ export default function MultiStepForm({ onSubmit, initialData = {} }: MultiStepF
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20 p-4">
-      <Card className="w-full max-w-lg shadow-2xl overflow-hidden">
-        <div className="h-1 bg-secondary">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+      <div className="w-full max-w-lg bg-white shadow-2xl rounded-lg overflow-hidden">
+        <div className="h-1 bg-blue-500">
           <motion.div
-            className="h-full bg-primary"
+            className="h-full bg-blue-700"
             initial={{ width: 0 }}
             animate={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
             transition={{ duration: 0.5 }}
@@ -130,18 +130,18 @@ export default function MultiStepForm({ onSubmit, initialData = {} }: MultiStepF
               </motion.div>
             </AnimatePresence>
           </div>
-          <div className="flex justify-between p-6 bg-secondary/5">
+          <div className="flex justify-between p-6 bg-gray-50">
             {currentStep > 0 && (
-              <Button type="button" variant="outline" onClick={handlePrev} aria-label="Go to previous step">
+              <button type="button" onClick={handlePrev} className="px-4 py-2 bg-gray-200 text-gray-800 rounded">
                 Previous
-              </Button>
+              </button>
             )}
-            <Button type="submit" className="ml-auto" aria-label={currentStep === steps.length - 1 ? 'Submit form' : 'Go to next step'}>
+            <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded ml-auto">
               {currentStep === steps.length - 1 ? 'Submit' : 'Next'}
-            </Button>
+            </button>
           </div>
         </form>
-      </Card>
+      </div>
     </div>
   )
 }
@@ -152,24 +152,22 @@ const PreferencesStep = dynamic(() => import('./PreferencesStep'));
 
 // Analytics functions
 function trackStepCompletion(step: number) {
-  ReactGA.event({
-    category: 'Onboarding',
-    action: 'Step Completed',
-    label: `Step ${step + 1}`,
-  });
+  // Implement step completion tracking
+  console.log(`Step ${step + 1} completed`)
 }
 
 function trackFormCompletion() {
-  ReactGA.event({
-    category: 'Onboarding',
-    action: 'Form Completed',
-  });
+  // Implement form completion tracking
+  console.log('Form completed')
 }
 
 function trackStepNavigation(fromStep: number, direction: 'previous' | 'next') {
-  ReactGA.event({
-    category: 'Onboarding',
-    action: 'Step Navigation',
-    label: `${direction} from step ${fromStep + 1}`,
-  });
+  // Implement step navigation tracking
+  console.log(`Navigated ${direction} from step ${fromStep + 1}`)
+}
+
+function isValidFormData(data: unknown): data is Partial<FormData> {
+  if (typeof data !== 'object' || data === null) return false
+  const validKeys = ['personalInfo', 'professionalInfo', 'preferences']
+  return Object.keys(data).every(key => validKeys.includes(key))
 }

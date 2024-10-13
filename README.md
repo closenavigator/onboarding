@@ -1,4 +1,4 @@
-# whop-apps-template
+nnpm run buildnp# whop-apps-template
 
 This template includes everything you need to get started building an app on Whop. It comes pre-installed with the [**Apps SDK**](https://dev.whop.com/sdk) which has all the tool you need to get building. It also comes preinstalled with [**Frosted UI**](https://github.com/whopio/frosted-ui/), our UI kit.
 

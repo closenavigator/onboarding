@@ -9,7 +9,7 @@ import {
   Link,
   Text,
   themeAccentColorsOrdered,
-} from "frosted-ui";
+} from "@whop/frosted-ui";
 import { ThemeSwitcherButton } from "./page.client";
 
 const tasks = [

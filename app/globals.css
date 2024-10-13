@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-.frosted-ui {
-  --default-font-family: var(--font-inter), sans-serif;
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --foreground: #ffffff;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
 }

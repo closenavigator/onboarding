@@ -1,7 +1,12 @@
 "use client";
-import "@/lib/iframe";
-import { PropsWithChildren } from "react";
+import { FC, PropsWithChildren } from "react";
+import { TooltipProvider, Toaster } from "@whop/frosted-ui";
 
-export function ClientLayout({ children }: PropsWithChildren) {
-  return children;
-}
+export const ClientLayout: FC<PropsWithChildren> = ({ children }) => {
+  return (
+    <TooltipProvider>
+      {children}
+      <Toaster />
+    </TooltipProvider>
+  );
+};
